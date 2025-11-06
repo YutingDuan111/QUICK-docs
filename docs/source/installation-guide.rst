@@ -83,39 +83,34 @@ QUICK CPU versions can be configured and built as follows:
 
 1. Ensure CMake (version 3.12.0 or higher) is installed::
 
-	.. code-block:: none
-    	cmake --version
+    cmake --version
 
    If CMake is not installed on macOS, you can install it using Homebrew::
 
-	.. code-block:: none
-		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-		brew install cmake
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	brew install cmake
 
 2. Configure with CMake. For a basic MPI-enabled build using Clang compiler::
-
-	.. code-block:: none
-		cmake .. \
+	
+	cmake .. \
 		-DCOMPILER=CLANG \
 		-DMPI=TRUE \
 		-DCMAKE_INSTALL_PREFIX=$HOME/quick_install
 
-where ``-DMPI`` flag enables compiling the MPI parallel version. The serial
-version is compiled by default. Multiple compiler toolchains are supported
-through the ``-DCOMPILER`` flag:
+   where ``-DMPI`` flag enables compiling the MPI parallel version. 
+   The serial version is compiled by default. 
+   Multiple compiler toolchains are supported through the ``-DCOMPILER`` flag:
 
-* GNU compiler (default): ``-DCOMPILER=GNU``
-* Intel compiler: ``-DCOMPILER=INTEL``
-* Clang compiler: ``-DCOMPILER=CLANG``
+   * GNU compiler (default): ``-DCOMPILER=GNU``
+   * Intel compiler: ``-DCOMPILER=INTEL``
+   * Clang compiler: ``-DCOMPILER=CLANG``
 
 3. Build and install::
 
-	.. code-block:: none
-		# Build using all available CPU cores
-		make -j$(sysctl -n hw.ncpu)  # on macOS
-		# or
-		make -j$(nproc)              # on Linux
-		make install
+	make -j$(sysctl -n hw.ncpu)  # on macOS
+	# or
+	make -j$(nproc)              # on Linux
+	make install
 
 
 
