@@ -73,6 +73,15 @@ directory like this:
 	cd ${QUICK_HOME}
 	mkdir builddir
 
+check CMake version
+^^^^^^^^^^^^^^^^^^^^^^
+Ensure CMake (version 3.12.0 or higher) is installed::
+
+	cmake --version
+
+If CMake is not installed on macOS, you can install it using Homebrew::
+    
+	brew install cmake
 
 CPU version
 ^^^^^^^^^^^
@@ -81,16 +90,7 @@ Assuming you have created a directory named *builddir* in the ``QUICK_HOME``
 directory and you want to install QUICK into directory ``QUICK_INSTALL``, use CPU compiler toolchain in Macbook or Linux. All
 QUICK CPU versions can be configured and built as follows:
 
-1. Ensure CMake (version 3.12.0 or higher) is installed::
-
-    cmake --version
-
-   If CMake is not installed on macOS, you can install it using Homebrew::
-
-	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-	brew install cmake
-
-2. Configure with CMake. For a basic MPI-enabled build using Clang compiler::
+1. Configure with CMake. For a basic MPI-enabled build using Clang compiler::
 	
 	cmake .. \
 		-DCOMPILER=CLANG \
@@ -104,14 +104,13 @@ QUICK CPU versions can be configured and built as follows:
    * GNU compiler (default): ``-DCOMPILER=GNU``
    * Intel compiler: ``-DCOMPILER=INTEL``
    * Clang compiler: ``-DCOMPILER=CLANG``
+   Note that requesting the Clang compiler requires the GNU Fortran compiler (`gfortran`) to be installed. C/C++ code will be compiled by Clang, 
+   while Fortran code will be compiled by gfortran.
 
-3. Build and install::
+2. Build and install::
 
-	make -j$(sysctl -n hw.ncpu)  # on macOS
-	# or
-	make -j$(nproc)              # on Linux
+	make -j
 	make install
-
 
 
 CUDA version
