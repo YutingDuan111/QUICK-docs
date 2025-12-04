@@ -79,9 +79,6 @@ Ensure CMake (version 3.12.0 or higher) is installed::
 
 	cmake --version
 
-If CMake is not installed on macOS, you can install it using Homebrew::
-    
-	brew install cmake
 
 CPU version
 ^^^^^^^^^^^
@@ -112,6 +109,7 @@ QUICK CPU versions can be configured and built as follows:
 	make -j
 	make install
 
+   Note that the flag -j enables parallel builds that use all available CPU cores for compilation.
 
 CUDA version
 ^^^^^^^^^^^^
